@@ -1,10 +1,28 @@
 
+{% if error_message %} 
+<p class ="alert alert-danger"> 
+    <strong>{{ error_message }}</strong> 
+</p> 
+{% endif %} 
 
-<h1>VOTI UOMO</h1>
-<p>Ricorda di esprimere un voto per un uomo ed un voto per una donna</p>
-<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-<label for="vehicle1"> I have a bike</label><br>
-<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-<label for="vehicle2"> I have a car</label><br>
-<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-<label for="vehicle3"> I have a boat</label><br>
+
+
+
+<h1>Prego, scegli chi votare</h1>
+
+<h5>Ricorda che puoi entrare ed uscire tutte le volte che vuoi, ma potrai votare solo una volta e non potrai modificare il tuo voto, quindi stai attento</h5>
+                <p  style="color:red;">{{orario_voto}}</p>
+
+<form method ="post">
+    {% csrf_token %} 
+    {% for choice in candidati %}
+    <div class ="form-check">
+          <div class="vote" style="display: flex; align-items: center;">
+
+        <input type ="radio" name ="choice" class ="form-check-input" value ="{{ choice.pk }}"/>
+                <p>{{choice}}</p>
+    </div>
+        </div>
+    {% endfor %} 
+    <input type ="submit" value ="Vote" class ="btn btn-success btn-lg btn-block mt-4" /> 
+</form>

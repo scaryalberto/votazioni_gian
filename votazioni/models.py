@@ -4,10 +4,6 @@ from django.db import models
 
 from django.db import models
 
-# Create your models here.
-from django.conf import settings
-from django.db import models
-from django.utils import timezone
 
 
 class CandidatiUomo(models.Model):
@@ -32,4 +28,22 @@ class CandidatiDonna(models.Model):
 
     def __str__(self):
         return self.nome_e_cognome
+
+
+
+#in models.py
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+class Votes(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ha_votato=models.BooleanField(default=False)
+    #other fields here
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            profile, created = Votes.objects.get_or_create(user=instance)
+
+    post_save.connect(create_user_profile, sender=User)
+
 
