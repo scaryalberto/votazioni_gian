@@ -6,6 +6,9 @@ from django.contrib import admin
 from django.contrib import admin
 from .models import CandidatiUomo, CandidatiDonna
 
+admin.site.site_header = "Sistema di voto - Admin"
+admin.site.site_title = "Sistema di voto - Admin"
+admin.site.index_title = "Sistema di voto"
 
 class CandidatiDonnaAdmin(admin.ModelAdmin):
     exclude=("votes",)
@@ -14,7 +17,6 @@ class CandidatiDonnaAdmin(admin.ModelAdmin):
 class CandidatiUomoAdmin(admin.ModelAdmin):
     exclude=("votes",)
     readonly_fields=('votes', )
-
 
 
 

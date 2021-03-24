@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'votazioni/base.html' %}
+{% block content %}
+
 <h1>Sistema di votazioni online</h1>
 <p>Benvenuto nel sistema di votazioni, clicca sul pulsante login per effettuare il login</p>
 <a href="http://127.0.0.1:8000/accounts/login/">Clicca per accedere</a> <br>
-<a href="http://127.0.0.1:8000/voti">Clicca per votare</a>
-
-</html>
+<a href="http://127.0.0.1:8000/voti">Clicca per votare</a><br>
+<a href="http://127.0.0.1:8000/admin">Amministratore</a><br>
+<a href="http://127.0.0.1:8000/accounts/logout">Logout</a><br>
+ {% endblock %}
